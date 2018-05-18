@@ -1,0 +1,9 @@
+lastUpgrade=00950
+proj.pluginVersion=0.9.50
+proj.AppId=138133105807
+and.BundleId=com.BaiaBaiaGames.MenuTemplate
+proj.classDir=Assets%2f_Game%2fDATA
+proj.ConstantsClassName=GPGSIds
+and.ResourceData=%3c%3fxml+version%3d%221.0%22+encoding%3d%22utf-8%22%3f%3e%0d%0a%3c%21--%0d%0aGoogle+Play+game+services+IDs.%0d%0aSave+this+file+as+res%2fvalues%2fgames-ids.xml+in+your+project.%0d%0a--%3e%0d%0a%3cresources%3e%0d%0a++%3c%21--+app_id+--%3e%0d%0a++%3cstring+name%3d%22app_id%22+translatable%3d%22false%22%3e138133105807%3c%2fstring%3e%0d%0a++%3c%21--+package_name+--%3e%0d%0a++%3cstring+name%3d%22package_name%22+translatable%3d%22false%22%3ecom.BaiaBaiaGames.MenuTemplate%3c%2fstring%3e%0d%0a++%3c%21--+achievement+Test+Achivement1+--%3e%0d%0a++%3cstring+name%3d%22achievement_test_achivement1%22+translatable%3d%22false%22%3eCgkIj9n_yoIEEAIQAQ%3c%2fstring%3e%0d%0a++%3c%21--+achievement+Test+Achivement+2+--%3e%0d%0a++%3cstring+name%3d%22achievement_test_achivement_2%22+translatable%3d%22false%22%3eCgkIj9n_yoIEEAIQAg%3c%2fstring%3e%0d%0a++%3c%21--+achievement+Incremental+Achivement+--%3e%0d%0a++%3cstring+name%3d%22achievement_incremental_achivement%22+translatable%3d%22false%22%3eCgkIj9n_yoIEEAIQAw%3c%2fstring%3e%0d%0a++%3c%21--+leaderboard+Leaderboard+--%3e%0d%0a++%3cstring+name%3d%22leaderboard_leaderboard%22+translatable%3d%22false%22%3eCgkIj9n_yoIEEAIQBA%3c%2fstring%3e%0d%0a%3c%2fresources%3e%0d%0a
+and.ClientId=138133105807-qc09258ots2aujbkbgb8b3n2heptj7qm.apps.googleusercontent.com
+android.SetupDone=true
