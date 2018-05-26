@@ -12,9 +12,20 @@ public class ScreenWipe : MonoBehaviour {
 
 	Animator transitionAnim;
 
+	public static ScreenWipe instance;
+	private static ScreenWipe _instance;
+
 	private void Awake () {
+
+		if (instance != null && instance != this) {
+			Destroy (this.gameObject);
+			return;
+		}
+
+		instance = this;
+		DontDestroyOnLoad (this.gameObject);
+
 		transitionAnim = GetComponentInChildren<Animator> ();
-		DontDestroyOnLoad (gameObject);
 
 		transitionAnim.SetFloat ("Time", wipeSpeed);
 	}
