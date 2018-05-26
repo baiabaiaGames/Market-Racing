@@ -7,6 +7,7 @@ using UnityEngine.Video;
 
 public class SceneLoader : MonoBehaviour {
 
+	[SerializeField] public string loaderScene;
 	[SerializeField] public string menuScene;
 	[SerializeField] public string gameScene;
 	[SerializeField] public float delay;
@@ -15,10 +16,19 @@ public class SceneLoader : MonoBehaviour {
 
 	IEnumerator loadSceneCoroutine;
 
-	private void Awake () {
-		screenWipe = FindObjectOfType<ScreenWipe> ();
-		DontDestroyOnLoad (gameObject);
+	public static SceneLoader instance;
+	private static SceneLoader _instance;
 
+	private void Awake () {
+		if (instance != null && instance != this) {
+			Destroy (this.gameObject);
+			return;
+		}
+
+		instance = this;
+		DontDestroyOnLoad (this.gameObject);
+
+		screenWipe = FindObjectOfType<ScreenWipe> ();
 		LoadScene ();
 	}
 
@@ -30,7 +40,7 @@ public class SceneLoader : MonoBehaviour {
 		StartCoroutine (loadSceneCoroutine);
 	}
 
-	public IEnumerator LoadSceneCoroutine (string menu, string game) {
+	public IEnumerator LoadSceneCoroutine (string menuSceneName, string gameSceneName) {
 		float d = 0;
 		while (d < delay) {
 			d += Time.deltaTime;
@@ -42,8 +52,8 @@ public class SceneLoader : MonoBehaviour {
 		while (!screenWipe.isDone)
 			yield return null;
 
-		AsyncOperation operation = SceneManager.LoadSceneAsync (menu);
-		AsyncOperation gameOperation = SceneManager.LoadSceneAsync (game, LoadSceneMode.Additive);
+		AsyncOperation operation = SceneManager.LoadSceneAsync (menuSceneName);
+		AsyncOperation gameOperation = SceneManager.LoadSceneAsync (gameSceneName, LoadSceneMode.Additive);
 		while (!operation.isDone && !gameOperation.isDone)
 			yield return null;
 
