@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-[CreateAssetMenu (menuName = "Cloud Variables/Player Profile ")]
+[CreateAssetMenu (menuName = "Player/Player Profile ")]
 public class PlayerProfile : ScriptableObject {
 
 	public string playerName;

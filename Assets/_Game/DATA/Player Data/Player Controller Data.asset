@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c6338ff6ca49fd54f848b0c8de49a18c, type: 3}
+  m_Name: Player Controller Data
+  m_EditorClassIdentifier: 
+  minSpeed: 7
+  maxSpeed: 9
+  speedMultiplier: 0.15
+  minMultiplier: 1
+  maxMultiplier: 30
+  increaseMultiplier: 0.15
+  jumpForce: 4
+  gravity: 12

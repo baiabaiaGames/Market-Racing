@@ -11,18 +11,30 @@ public class PlayerController : MonoBehaviour {
 
     //Movement
     private CharacterController controller;
-    private float jumpForce = 4.0f;
-    private float gravity = 12.0f;
+    private float jumpForce;
+    private float gravity;
+    private float speed;
     private float verticalVelocity;
-    private float speed = 7.0f;
+    public bool isGrounded { get; private set; }
 
+    public float multiplier;
+    public float lifeTimer = 30.00f;
+    int multiplierCounter;
+    public PlayerControllerData playerControllerData;
+    Vector3 moveVector;
     private void Start () {
         controller = GetComponent<CharacterController> ();
         anim = GetComponent<Animator> ();
+
+        speed = playerControllerData.minSpeed;
+        jumpForce = playerControllerData.jumpForce;
+        gravity = playerControllerData.gravity;
+        multiplier = playerControllerData.minMultiplier;
+
     }
 
     private void Update () {
-
+        isGrounded = IsGrounded ();
         if (!GameManager.instance.isPlaying)
             return;
 
@@ -31,8 +43,28 @@ public class PlayerController : MonoBehaviour {
         if (InputManager.Instance.SwipeRight)
             Rotate (true);
 
+        Movement ();
+        Animator ();
+
+        if (multiplierCounter == 5) {
+            multiplier = multiplier + playerControllerData.speedMultiplier;
+            multiplierCounter = 0;
+            Debug.Log (multiplier);
+        }
+
+        lifeTimer -= Time.deltaTime;
+
+        if (lifeTimer <= 0)
+            Debug.Log ("You Lose");
+
+        if (lifeTimer >= 30)
+            lifeTimer = 30.00f;
+    }
+
+    private void Movement () {
+
         //Calculate our move delta
-        Vector3 moveVector = Vector3.zero;
+        moveVector = Vector3.zero;
 
         moveVector = new Vector3 (Input.acceleration.x, 0, 0);
         moveVector = transform.TransformDirection (moveVector);
@@ -43,9 +75,6 @@ public class PlayerController : MonoBehaviour {
         } else if (Input.acceleration.x < 0 && transform.position.x <= -3.0f) {
             moveVector.x = 0f;
         }
-
-        bool isGrounded = IsGrounded ();
-        anim.SetBool ("Grounded", isGrounded);
 
         // Calculate Y
         if (isGrounded) {
@@ -80,13 +109,6 @@ public class PlayerController : MonoBehaviour {
         }
     }
 
-    private bool IsGrounded () {
-        Ray groundRay = new Ray (new Vector3 (controller.bounds.center.x, (controller.bounds.center.y - controller.bounds.extents.y) + 0.2f, controller.bounds.center.z), Vector3.down);
-        Debug.DrawRay (groundRay.origin, groundRay.direction, Color.cyan, 1.0f);
-
-        return (Physics.Raycast (groundRay, 0.2f + 0.1f));
-    }
-
     private void Rotate (bool goingRight) {
         if (goingRight) {
             if (transform.eulerAngles.y >= 90.0f && transform.eulerAngles.y <= 180.0f) {
@@ -104,6 +126,29 @@ public class PlayerController : MonoBehaviour {
             } else {
                 transform.eulerAngles = new Vector3 (0, 270.0f, 0);
             }
+        }
+    }
+
+    private void Animator () {
+        anim.SetBool ("Grounded", isGrounded);
+
+    }
+    private bool IsGrounded () {
+        Ray groundRay = new Ray (new Vector3 (controller.bounds.center.x, (controller.bounds.center.y - controller.bounds.extents.y) + 0.2f, controller.bounds.center.z), Vector3.down);
+        Debug.DrawRay (groundRay.origin, groundRay.direction, Color.cyan, 1.0f);
+
+        return (Physics.Raycast (groundRay, 0.2f + 0.1f));
+    }
+
+    void OnTriggerEnter (Collider other) {
+        if (other.tag == "Coin") {
+            Destroy (other.gameObject);
+            multiplierCounter++;
+        }
+
+        if (other.tag == "Life") {
+            Destroy (other.gameObject);
+            lifeTimer = lifeTimer + 3.00f;
         }
     }
 }
