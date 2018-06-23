@@ -28,11 +28,31 @@ public class GameManager : MonoBehaviour {
 	#endregion /Singleton
 
 	void Start () {
-		if (onGameStart != null)
-			onGameStart.Raise ();
+		GameStartRaiseEvent ();
 	}
 
 	public void IsPlaying (bool playing) {
 		isPlaying = playing;
+	}
+
+	public void GameStartRaiseEvent () {
+		if (onGameStart)
+			onGameStart.Raise ();
+		else
+			Debug.Log ("You haven´t set  the On Game Start Variable");
+	}
+
+	public void GamePlayingRaiseEvent () {
+		if (onGamePlaying)
+			onGamePlaying.Raise ();
+		else
+			Debug.Log ("You haven´t set  the On Game Playing Variable");
+	}
+
+	public void GameResetRaiseEvent () {
+		if (onGameReset)
+			onGameStart.Raise ();
+		else
+			Debug.Log ("You haven´t set  the On Game Reset Variable");
 	}
 }

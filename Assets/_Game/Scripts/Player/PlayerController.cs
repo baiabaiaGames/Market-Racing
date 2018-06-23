@@ -17,7 +17,6 @@ public class PlayerController : MonoBehaviour {
     private float verticalVelocity;
     public bool isGrounded { get; private set; }
 
-    public float multiplier;
     public float lifeTimer = 30.00f;
     int multiplierCounter;
     public PlayerControllerData playerControllerData;
@@ -29,7 +28,7 @@ public class PlayerController : MonoBehaviour {
         speed = playerControllerData.minSpeed;
         jumpForce = playerControllerData.jumpForce;
         gravity = playerControllerData.gravity;
-        multiplier = playerControllerData.minMultiplier;
+        playerControllerData.multiplier = playerControllerData.minMultiplier;
 
     }
 
@@ -47,9 +46,9 @@ public class PlayerController : MonoBehaviour {
         Animator ();
 
         if (multiplierCounter == 5) {
-            multiplier = multiplier + playerControllerData.speedMultiplier;
+            playerControllerData.multiplier = playerControllerData.multiplier + playerControllerData.speedMultiplier;
             multiplierCounter = 0;
-            Debug.Log (multiplier);
+            Debug.Log (playerControllerData.multiplier);
         }
 
         lifeTimer -= Time.deltaTime;

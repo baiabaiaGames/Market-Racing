@@ -13,6 +13,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   minSpeed: 7
   maxSpeed: 9
+  multiplier: 1.8999999
   speedMultiplier: 0.15
   minMultiplier: 1
   maxMultiplier: 30
