@@ -24,11 +24,13 @@ public class GameManager : MonoBehaviour {
 
 		instance = this;
 		DontDestroyOnLoad (this.gameObject);
+		
 	}
 	#endregion /Singleton
 
 	void Start () {
 		GameStartRaiseEvent ();
+		 Application.targetFrameRate = 60;
 	}
 
 	public void IsPlaying (bool playing) {

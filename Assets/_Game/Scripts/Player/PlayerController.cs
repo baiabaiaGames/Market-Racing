@@ -43,12 +43,12 @@ public class PlayerController : MonoBehaviour {
             Rotate (true);
 
         Movement ();
-        Animator ();
+        // Animator ();
 
         if (multiplierCounter == 5) {
             playerControllerData.multiplier = playerControllerData.multiplier + playerControllerData.speedMultiplier;
             multiplierCounter = 0;
-            Debug.Log (playerControllerData.multiplier);
+            // Debug.Log (playerControllerData.multiplier);
         }
 
         lifeTimer -= Time.deltaTime;
@@ -81,7 +81,7 @@ public class PlayerController : MonoBehaviour {
 
             if (InputManager.Instance.SwipeUp) {
                 //Jump
-                anim.SetTrigger ("Jump");
+                // anim.SetTrigger ("Jump");
                 verticalVelocity = jumpForce;
             }
         } else {
@@ -134,7 +134,7 @@ public class PlayerController : MonoBehaviour {
     }
     private bool IsGrounded () {
         Ray groundRay = new Ray (new Vector3 (controller.bounds.center.x, (controller.bounds.center.y - controller.bounds.extents.y) + 0.2f, controller.bounds.center.z), Vector3.down);
-        Debug.DrawRay (groundRay.origin, groundRay.direction, Color.cyan, 1.0f);
+        // Debug.DrawRay (groundRay.origin, groundRay.direction, Color.cyan, 1.0f);
 
         return (Physics.Raycast (groundRay, 0.2f + 0.1f));
     }
