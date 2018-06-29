@@ -41,10 +41,10 @@ public class AdManager : MonoBehaviour {
 
 		RequestBanner ();
 		RequestInterstitial ();
+		ShowInterstitial ();
 	}
 
 	private void Update () {
-		ShowInterstitial ();
 	}
 
 	// Returns an ad request with custom ad targeting.
