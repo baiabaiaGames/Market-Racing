@@ -30,7 +30,6 @@ public class GameManager : MonoBehaviour {
 
 	void Start () {
 		GameStartRaiseEvent ();
-		 Application.targetFrameRate = 60;
 	}
 
 	public void IsPlaying (bool playing) {
